@@ -1,0 +1,122 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Counterparty {
+    account: String!
+    account_of_bank: String!
+    appartment: String
+    appartment_unit: String
+    bank: String!
+    bik: String!
+    business_structure: String!
+    business_structure_bank: String!
+    city: String!
+    email: String!
+    full_name: String!
+    house: String!
+    house_unit: String!
+    id: Int!
+    inn: String!
+    kpp: String!
+    location_index: String!
+    name: String!
+    participant: String!
+    region: String!
+    settlement: String!
+    street: String!
+    street_unit: String!
+    sub_federal_unit: String!
+}
+
+type Mutation {
+    createCounterparty(createCounterpartyInput: CreateCounterpartyInput!): Counterparty!
+    createUser(createUserInput: CreateUserInput!): User!
+    removeCounterparty(id: Int!): Counterparty
+    removeUser(id: Int!): User!
+    updateCounterparty(updateCounterpartyInput: UpdateCounterpartyInput!): Counterparty!
+    updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+type Query {
+    counterparties: [Counterparty]!
+    counterparty(id: Int!): Counterparty
+    user(id: Int!): User!
+    users: [User]!
+}
+
+type User {
+    email: String!
+    id: Int!
+    password: String!
+    username: String!
+}
+
+input CreateCounterpartyInput {
+    account: String!
+    account_of_bank: String!
+    appartment: String
+    appartment_unit: String
+    bank: String!
+    bik: String!
+    business_structure: String!
+    business_structure_bank: String!
+    city: String!
+    email: String!
+    full_name: String!
+    house: String!
+    house_unit: String!
+    inn: String!
+    kpp: String!
+    location_index: String!
+    name: String!
+    participant: String!
+    region: String!
+    settlement: String!
+    street: String!
+    street_unit: String!
+    sub_federal_unit: String!
+}
+
+input CreateUserInput {
+    email: String!
+    password: String!
+    username: String!
+}
+
+input UpdateCounterpartyInput {
+    account: String
+    account_of_bank: String
+    appartment: String
+    appartment_unit: String
+    bank: String
+    bik: String
+    business_structure: String
+    business_structure_bank: String
+    city: String
+    email: String
+    full_name: String
+    house: String
+    house_unit: String
+    id: Int!
+    inn: String
+    kpp: String
+    location_index: String
+    name: String
+    participant: String
+    region: String
+    settlement: String
+    street: String
+    street_unit: String
+    sub_federal_unit: String
+}
+
+input UpdateUserInput {
+    email: String
+    id: Int!
+    password: String
+    username: String
+}
