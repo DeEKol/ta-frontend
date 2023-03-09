@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import "normalize.css";
 
@@ -10,11 +10,7 @@ import PageContainerSC from "@/UI/SC/PageContainerSC";
 export default function Home() {
   const { data, loading } = useQuery(GET_ALL_USERS);
 
-  useEffect(() => {
-    if (!loading) {
-      console.log(data);
-    }
-  }, [data]);
-
-  return <PageContainerSC>123</PageContainerSC>;
+  return (
+    !loading && <PageContainerSC>{data.users[0].username}</PageContainerSC>
+  );
 }
