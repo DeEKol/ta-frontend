@@ -7,29 +7,29 @@ schema {
 
 type Counterparty {
     account: String!
-    account_of_bank: String!
-    appartment: String
-    appartment_unit: String
+    accountOfBank: String!
+    apartment: String
+    apartmentUnit: String
     bank: String!
     bik: String!
-    business_structure: String!
-    business_structure_bank: String!
+    businessStructure: String!
+    businessStructureBank: String!
     city: String!
     email: String!
-    full_name: String!
+    fullName: String!
     house: String!
-    house_unit: String!
+    houseUnit: String!
     id: Int!
     inn: String!
     kpp: String!
-    location_index: String!
+    locationIndex: String!
     name: String!
     participant: String!
     region: String!
     settlement: String!
     street: String!
-    street_unit: String!
-    sub_federal_unit: String!
+    streetUnit: String!
+    subFederalUnit: String!
 }
 
 type Mutation {
@@ -57,28 +57,28 @@ type User {
 
 input CreateCounterpartyInput {
     account: String!
-    account_of_bank: String!
-    appartment: String
-    appartment_unit: String
+    accountOfBank: String!
+    apartment: String
+    apartmentUnit: String
     bank: String!
     bik: String!
-    business_structure: String!
-    business_structure_bank: String!
+    businessStructure: String!
+    businessStructureBank: String!
     city: String!
     email: String!
-    full_name: String!
+    fullName: String!
     house: String!
-    house_unit: String!
+    houseUnit: String!
     inn: String!
     kpp: String!
-    location_index: String!
+    locationIndex: String!
     name: String!
     participant: String!
     region: String!
     settlement: String!
     street: String!
-    street_unit: String!
-    sub_federal_unit: String!
+    streetUnit: String!
+    subFederalUnit: String!
 }
 
 input CreateUserInput {
@@ -89,29 +89,29 @@ input CreateUserInput {
 
 input UpdateCounterpartyInput {
     account: String
-    account_of_bank: String
-    appartment: String
-    appartment_unit: String
+    accountOfBank: String
+    apartment: String
+    apartmentUnit: String
     bank: String
     bik: String
-    business_structure: String
-    business_structure_bank: String
+    businessStructure: String
+    businessStructureBank: String
     city: String
     email: String
-    full_name: String
+    fullName: String
     house: String
-    house_unit: String
+    houseUnit: String
     id: Int!
     inn: String
     kpp: String
-    location_index: String
+    locationIndex: String
     name: String
     participant: String
     region: String
     settlement: String
     street: String
-    street_unit: String
-    sub_federal_unit: String
+    streetUnit: String
+    subFederalUnit: String
 }
 
 input UpdateUserInput {
