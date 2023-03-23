@@ -1,0 +1,26 @@
+export type Counterparty = {
+  id?: number;
+  businessStructure: string;
+  name: string;
+  fullName: string;
+  email: string;
+  inn: string;
+  kpp: string;
+  participant: string;
+  businessStructureBank: string;
+  bank: string;
+  bik: string;
+  accountOfBank: string;
+  account: string;
+  locationIndex: string;
+  subFederalUnit: string;
+  region: string;
+  settlement: string;
+  city: string;
+  streetUnit: string;
+  street: string;
+  houseUnit: string;
+  house: string;
+  apartmentUnit?: string;
+  apartment?: string;
+};

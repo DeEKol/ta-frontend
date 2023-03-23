@@ -13,7 +13,7 @@
 ### Start
 
 ```sh
-    yarn dev
+  yarn dev
 ```
 
 ### Commit
