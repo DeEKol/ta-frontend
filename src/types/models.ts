@@ -24,3 +24,12 @@ export type Counterparty = {
   apartmentUnit?: string;
   apartment?: string;
 };
+
+export type Docs = {
+  id?: number;
+  date: string;
+  post: boolean;
+  pay: boolean;
+  contractorId: number | undefined;
+  consumerId: number | undefined;
+};

@@ -7,7 +7,7 @@ import type { ApolloQueryResult, OperationVariables } from "@apollo/client";
 import AddressBlock from "@/components/Counterparty/CounterpartyForm/AddressBlock/AddressBlock";
 import BankBlock from "@/components/Counterparty/CounterpartyForm/BankBlock/BankBlock";
 import MainBlock from "@/components/Counterparty/CounterpartyForm/MainBlock/MainBlock";
-import { useCounterpartyForm } from "@/components/Counterparty/CounterpartyForm/MainBlock/useCounterpartyForm";
+import { useCounterpartyForm } from "@/components/Counterparty/CounterpartyForm/useCounterpartyForm";
 import type { Counterparty } from "@/types/models";
 
 export interface ICounterpartyFormProps {

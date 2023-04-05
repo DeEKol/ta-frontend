@@ -33,8 +33,7 @@ const WrapperSC = styled("div")`
 `;
 
 const TruckIconSC = styled(TruckIcon)`
-  width: 20px;
-  height: 20px;
+  height: 40px;
 `;
 
 export default React.memo(Header);
