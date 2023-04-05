@@ -32,18 +32,32 @@ type Counterparty {
     subFederalUnit: String!
 }
 
+type Docs {
+    consumerId: Int!
+    contractorId: Int!
+    date: String!
+    id: Int!
+    pay: Boolean
+    post: Boolean
+}
+
 type Mutation {
     createCounterparty(createCounterpartyInput: CreateCounterpartyInput!): Counterparty!
+    createDocs(createDocsInput: CreateDocsInput!): Docs!
     createUser(createUserInput: CreateUserInput!): User!
     removeCounterparty(id: Int!): Counterparty
+    removeDocs(id: Int!): Docs
     removeUser(id: Int!): User!
     updateCounterparty(updateCounterpartyInput: UpdateCounterpartyInput!): Counterparty!
+    updateDocs(updateDocsInput: UpdateDocsInput!): Docs!
     updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
     counterparties: [Counterparty]!
     counterparty(id: Int!): Counterparty
+    doc(id: Int!): Docs
+    docs: [Docs]!
     user(id: Int!): User!
     users: [User]!
 }
@@ -81,6 +95,14 @@ input CreateCounterpartyInput {
     subFederalUnit: String!
 }
 
+input CreateDocsInput {
+    consumerId: Int!
+    contractorId: Int!
+    date: String!
+    pay: Boolean
+    post: Boolean
+}
+
 input CreateUserInput {
     email: String!
     password: String!
@@ -112,6 +134,15 @@ input UpdateCounterpartyInput {
     street: String
     streetUnit: String
     subFederalUnit: String
+}
+
+input UpdateDocsInput {
+    consumerId: Int!
+    contractorId: Int!
+    date: String!
+    id: Int!
+    pay: Boolean
+    post: Boolean
 }
 
 input UpdateUserInput {
