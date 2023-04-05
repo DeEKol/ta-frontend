@@ -33,3 +33,10 @@ export type Docs = {
   contractorId: number | undefined;
   consumerId: number | undefined;
 };
+
+export type Driver = {
+  id?: number;
+  firstname: string;
+  lastname: string;
+  surname: string;
+};

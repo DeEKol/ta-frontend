@@ -41,15 +41,25 @@ type Docs {
     post: Boolean
 }
 
+type Driver {
+    firstname: String!
+    id: Int!
+    lastname: String!
+    surname: String!
+}
+
 type Mutation {
     createCounterparty(createCounterpartyInput: CreateCounterpartyInput!): Counterparty!
     createDocs(createDocsInput: CreateDocsInput!): Docs!
+    createDriver(createDriverInput: CreateDriverInput!): Driver!
     createUser(createUserInput: CreateUserInput!): User!
     removeCounterparty(id: Int!): Counterparty
     removeDocs(id: Int!): Docs
+    removeDriver(id: Int!): Driver
     removeUser(id: Int!): User!
     updateCounterparty(updateCounterpartyInput: UpdateCounterpartyInput!): Counterparty!
     updateDocs(updateDocsInput: UpdateDocsInput!): Docs!
+    updateDriver(updateDriverInput: UpdateDriverInput!): Driver!
     updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
@@ -58,6 +68,8 @@ type Query {
     counterparty(id: Int!): Counterparty
     doc(id: Int!): Docs
     docs: [Docs]!
+    driver(id: Int!): Driver
+    drivers: [Driver]!
     user(id: Int!): User!
     users: [User]!
 }
@@ -103,6 +115,12 @@ input CreateDocsInput {
     post: Boolean
 }
 
+input CreateDriverInput {
+    firstname: String!
+    lastname: String!
+    surname: String!
+}
+
 input CreateUserInput {
     email: String!
     password: String!
@@ -143,6 +161,13 @@ input UpdateDocsInput {
     id: Int!
     pay: Boolean
     post: Boolean
+}
+
+input UpdateDriverInput {
+    firstname: String!
+    id: Int!
+    lastname: String!
+    surname: String!
 }
 
 input UpdateUserInput {
