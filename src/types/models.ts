@@ -47,3 +47,18 @@ export type Car = {
   numberState: string;
   trailerNumberState: string;
 };
+
+export type Trip = {
+  id?: number;
+  itinerary: string;
+  dateFor: string;
+  dateTo: string;
+  quantity: number;
+  quantityUnit: string;
+  price: number;
+  contractorId: number;
+  consumerId: number;
+  docsId: number;
+  driverId: number;
+  carId: number;
+};
