@@ -60,16 +60,19 @@ type Mutation {
     createCounterparty(createCounterpartyInput: CreateCounterpartyInput!): Counterparty!
     createDocs(createDocsInput: CreateDocsInput!): Docs!
     createDriver(createDriverInput: CreateDriverInput!): Driver!
+    createTrip(createTripInput: CreateTripInput!): Trip!
     createUser(createUserInput: CreateUserInput!): User!
     removeCar(id: Int!): Car
     removeCounterparty(id: Int!): Counterparty
     removeDocs(id: Int!): Docs
     removeDriver(id: Int!): Driver
+    removeTrip(id: Int!): Trip
     removeUser(id: Int!): User!
     updateCar(updateCarInput: UpdateCarInput!): Car!
     updateCounterparty(updateCounterpartyInput: UpdateCounterpartyInput!): Counterparty!
     updateDocs(updateDocsInput: UpdateDocsInput!): Docs!
     updateDriver(updateDriverInput: UpdateDriverInput!): Driver!
+    updateTrip(updateTripInput: UpdateTripInput!): Trip!
     updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
@@ -82,8 +85,25 @@ type Query {
     docs: [Docs]!
     driver(id: Int!): Driver
     drivers: [Driver]!
+    trip(id: Int!): Trip
+    trips: [Trip]!
     user(id: Int!): User!
     users: [User]!
+}
+
+type Trip {
+    carId: Int!
+    consumerId: Int!
+    contractorId: Int!
+    dateFor: String!
+    dateTo: String
+    docsId: Int
+    driverId: Int!
+    id: Int!
+    itinerary: String!
+    price: Int!
+    quantity: Int!
+    quantityUnit: String!
 }
 
 type User {
@@ -137,6 +157,20 @@ input CreateDriverInput {
     firstname: String!
     lastname: String!
     surname: String!
+}
+
+input CreateTripInput {
+    carId: Int!
+    consumerId: Int!
+    contractorId: Int!
+    dateFor: String!
+    dateTo: String
+    docsId: Int
+    driverId: Int!
+    itinerary: String!
+    price: Int!
+    quantity: Int!
+    quantityUnit: String!
 }
 
 input CreateUserInput {
@@ -193,6 +227,21 @@ input UpdateDriverInput {
     id: Int!
     lastname: String!
     surname: String!
+}
+
+input UpdateTripInput {
+    carId: Int!
+    consumerId: Int!
+    contractorId: Int!
+    dateFor: String!
+    dateTo: String
+    docsId: Int
+    driverId: Int!
+    id: Int!
+    itinerary: String!
+    price: Int!
+    quantity: Int!
+    quantityUnit: String!
 }
 
 input UpdateUserInput {
