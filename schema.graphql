@@ -5,6 +5,13 @@ schema {
     mutation: Mutation
 }
 
+type Car {
+    id: Int!
+    name: String!
+    numberState: String!
+    trailerNumberState: String!
+}
+
 type Counterparty {
     account: String!
     accountOfBank: String!
@@ -49,14 +56,17 @@ type Driver {
 }
 
 type Mutation {
+    createCar(createCarInput: CreateCarInput!): Car!
     createCounterparty(createCounterpartyInput: CreateCounterpartyInput!): Counterparty!
     createDocs(createDocsInput: CreateDocsInput!): Docs!
     createDriver(createDriverInput: CreateDriverInput!): Driver!
     createUser(createUserInput: CreateUserInput!): User!
+    removeCar(id: Int!): Car
     removeCounterparty(id: Int!): Counterparty
     removeDocs(id: Int!): Docs
     removeDriver(id: Int!): Driver
     removeUser(id: Int!): User!
+    updateCar(updateCarInput: UpdateCarInput!): Car!
     updateCounterparty(updateCounterpartyInput: UpdateCounterpartyInput!): Counterparty!
     updateDocs(updateDocsInput: UpdateDocsInput!): Docs!
     updateDriver(updateDriverInput: UpdateDriverInput!): Driver!
@@ -64,6 +74,8 @@ type Mutation {
 }
 
 type Query {
+    car(id: Int!): Car
+    cars: [Car]!
     counterparties: [Counterparty]!
     counterparty(id: Int!): Counterparty
     doc(id: Int!): Docs
@@ -79,6 +91,12 @@ type User {
     id: Int!
     password: String!
     username: String!
+}
+
+input CreateCarInput {
+    name: String!
+    numberState: String!
+    trailerNumberState: String!
 }
 
 input CreateCounterpartyInput {
@@ -125,6 +143,13 @@ input CreateUserInput {
     email: String!
     password: String!
     username: String!
+}
+
+input UpdateCarInput {
+    id: Int!
+    name: String!
+    numberState: String!
+    trailerNumberState: String!
 }
 
 input UpdateCounterpartyInput {

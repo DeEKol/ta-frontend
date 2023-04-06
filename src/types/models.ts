@@ -40,3 +40,10 @@ export type Driver = {
   lastname: string;
   surname: string;
 };
+
+export type Car = {
+  id?: number;
+  name: string;
+  numberState: string;
+  trailerNumberState: string;
+};
