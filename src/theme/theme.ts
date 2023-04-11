@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material";
 
-import { PRIMARY_MAIN_COLOR } from "@/theme/colors";
+import { LIGHT_COLOR, MAIN_BLACK, PRIMARY_MAIN_COLOR } from "@/theme/colors";
 
 export const theme = createTheme({
   palette: {
@@ -12,6 +12,21 @@ export const theme = createTheme({
     MuiButton: {
       defaultProps: {
         variant: "contained",
+      },
+    },
+    MuiLink: {
+      defaultProps: {
+        color: MAIN_BLACK,
+        style: {
+          textDecoration: "none",
+        },
+      },
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            color: LIGHT_COLOR,
+          },
+        },
       },
     },
   },
