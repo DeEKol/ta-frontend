@@ -8,6 +8,7 @@ import { DELETE_CAR } from "@/graphql/mutations/car";
 import { GET_ALL_CARS } from "@/graphql/query/car";
 import type { Car } from "@/types/models";
 import PageContainerSC from "@/UI/SC/PageContainerSC";
+import TitleSC from "@/UI/SC/TitleSC";
 
 const CarPage = () => {
   const [form, setForm] = useState<Car>({
@@ -31,6 +32,7 @@ const CarPage = () => {
 
   return !loading ? (
     <PageContainerSC>
+      <TitleSC>Авто</TitleSC>
       <CarForm
         form={form}
         setForm={setForm}

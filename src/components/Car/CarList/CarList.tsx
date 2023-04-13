@@ -1,11 +1,14 @@
 import type { Dispatch } from "react";
 import React from "react";
-import { Button, styled } from "@mui/material";
 
 import type { ApolloQueryResult, OperationVariables } from "@apollo/client";
 
 import { useCarList } from "@/components/Car/CarList/useCarList";
 import type { Car } from "@/types/models";
+import ButtonSC from "@/UI/SC/ButtonSC";
+import ElemSC from "@/UI/SC/ElemSC";
+import ListSC from "@/UI/SC/ListSC";
+import SubTitleSC from "@/UI/SC/SubTitleSC";
 
 export interface ICarListProps {
   deleteCar: any;
@@ -26,28 +29,26 @@ const CarList = ({ deleteCar, cars, setForm, refetch }: ICarListProps) => {
 
   return (
     <>
-      <h2>Список авто</h2>
-      <CarListSC>
+      <SubTitleSC>Список авто</SubTitleSC>
+      <ListSC>
         {cars.map((elem) => (
-          <li key={elem.id}>
+          <ElemSC key={elem.id}>
             {elem.id}, {elem.name}, {elem.numberState},{" "}
             {elem.trailerNumberState}
-            <Button
+            <ButtonSC
               variant="contained"
               type="button"
               onClick={() => elem.id && onChangeFormCar(elem.id)}>
               Изменить
-            </Button>
-            <Button onClick={() => elem.id && onDeleteCar(elem.id)}>
+            </ButtonSC>
+            <ButtonSC onClick={() => elem.id && onDeleteCar(elem.id)}>
               Удалить
-            </Button>
-          </li>
+            </ButtonSC>
+          </ElemSC>
         ))}
-      </CarListSC>
+      </ListSC>
     </>
   );
 };
-
-const CarListSC = styled("ul")``;
 
 export default React.memo(CarList);
