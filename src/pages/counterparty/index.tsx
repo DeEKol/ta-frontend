@@ -8,6 +8,7 @@ import { DELETE_COUNTERPARTY } from "@/graphql/mutations/counteparty";
 import { GET_ALL_COUNTERPARTIES } from "@/graphql/query/counterparty";
 import type { Counterparty } from "@/types/models";
 import PageContainerSC from "@/UI/SC/PageContainerSC";
+import TitleSC from "@/UI/SC/TitleSC";
 
 const CounterpartyPage = () => {
   const [form, setForm] = useState<Counterparty>({
@@ -51,7 +52,7 @@ const CounterpartyPage = () => {
 
   return !loading ? (
     <PageContainerSC>
-      <h1>Контрагенты</h1>
+      <TitleSC>Контрагенты</TitleSC>
       <CounterpartyForm
         form={form}
         setForm={setForm}

@@ -1,6 +1,6 @@
 import type { Dispatch } from "react";
 import React from "react";
-import { Button, styled } from "@mui/material";
+import { styled } from "@mui/material";
 
 import type { ApolloQueryResult, OperationVariables } from "@apollo/client";
 
@@ -9,6 +9,8 @@ import BankBlock from "@/components/Counterparty/CounterpartyForm/BankBlock/Bank
 import MainBlock from "@/components/Counterparty/CounterpartyForm/MainBlock/MainBlock";
 import { useCounterpartyForm } from "@/components/Counterparty/CounterpartyForm/useCounterpartyForm";
 import type { Counterparty } from "@/types/models";
+import ButtonSC from "@/UI/SC/ButtonSC";
+import SubTitleSC from "@/UI/SC/SubTitleSC";
 
 export interface ICounterpartyFormProps {
   form: Counterparty;
@@ -31,7 +33,7 @@ const CounterpartyForm = ({
 
   return (
     <>
-      <h2>Добавить контрагента</h2>
+      <SubTitleSC>Добавить контрагента</SubTitleSC>
       <CounterpartyFormSC
         onSubmit={
           !form.id ? onSubmitCreateCounterparty : onSubmitUpdateCounterparty
@@ -48,22 +50,24 @@ const CounterpartyForm = ({
           form={form}
           setForm={setForm}
         />
-        <Button
+        <ButtonSC
           variant="contained"
           type="submit">
           {!form.id ? "Сохранить" : "Изменить"}
-        </Button>
-        <Button
+        </ButtonSC>
+        <ButtonSC
           variant="contained"
           type="reset"
           onClick={() => onFormReset()}>
           Сбросить
-        </Button>
+        </ButtonSC>
       </CounterpartyFormSC>
     </>
   );
 };
 
-const CounterpartyFormSC = styled("form")``;
+const CounterpartyFormSC = styled("form")`
+  margin-bottom: 25px;
+`;
 
 export default React.memo(CounterpartyForm);

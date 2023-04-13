@@ -1,11 +1,15 @@
 import type { Dispatch } from "react";
 import React from "react";
-import { Button, styled } from "@mui/material";
 
 import type { ApolloQueryResult, OperationVariables } from "@apollo/client";
 
+import { useCounterpartylistStyles } from "@/components/Counterparty/CounterpartyList/CounterpartyList.styles";
 import { useCounterpartyList } from "@/components/Counterparty/CounterpartyList/useCounterpartyList";
 import type { Counterparty } from "@/types/models";
+import ButtonSC from "@/UI/SC/ButtonSC";
+import ElemSC from "@/UI/SC/ElemSC";
+import ListSC from "@/UI/SC/ListSC";
+import SubTitleSC from "@/UI/SC/SubTitleSC";
 
 export interface ICounterpartyListProps {
   deleteCounterparty: any;
@@ -32,34 +36,49 @@ const CounterpartyList = ({
 
   return (
     <>
-      <h2>Список контрагентов</h2>
-      <CounterpartyListSC>
+      <SubTitleSC>Список контрагентов</SubTitleSC>
+      <ListSC>
         {counterparties.map((elem: Counterparty) => (
-          <li key={elem.id}>
-            Информация: {elem.id}, {elem.businessStructure}, {elem.name},{" "}
-            {elem.fullName}, {elem.email}, {elem.inn}, {elem.kpp},{" "}
-            {elem.participant}; Банк. реквизиты: {elem.businessStructureBank},{" "}
-            {elem.bank}, {elem.bik},{elem.accountOfBank}, {elem.account}; Адрес:{" "}
-            {elem.locationIndex},{elem.subFederalUnit}, {elem.region},{" "}
-            {elem.settlement}, {elem.city}, {elem.streetUnit}, {elem.street},{" "}
-            {elem.houseUnit}, {elem.house}, {elem.apartmentUnit},{" "}
-            {elem.apartment}
-            <Button
-              variant="contained"
-              type="button"
-              onClick={() => elem.id && onChangeFormCounterparty(elem.id)}>
-              Изменить
-            </Button>
-            <Button onClick={() => elem.id && onDeleteCounterparty(elem.id)}>
-              Удалить
-            </Button>
-          </li>
+          <ElemSC key={elem.id}>
+            <CounterpartyElemInfoSC>
+              id: {elem.id} <br />
+              Информация: {elem.businessStructure}, {elem.name}, {elem.fullName}
+              , {elem.email}, {elem.inn}, {elem.kpp}, {elem.participant}
+            </CounterpartyElemInfoSC>
+            <CounterpartyElemBankSC>
+              Банк. реквизиты: {elem.businessStructureBank}, {elem.bank},{" "}
+              {elem.bik},{elem.accountOfBank}, {elem.account}
+            </CounterpartyElemBankSC>
+            <CounterpartyElemAddressSC>
+              Адрес: {elem.locationIndex},{elem.subFederalUnit}, {elem.region},{" "}
+              {elem.settlement}, {elem.city}, {elem.streetUnit}, {elem.street},{" "}
+              {elem.houseUnit}, {elem.house}, {elem.apartmentUnit},{" "}
+              {elem.apartment}
+            </CounterpartyElemAddressSC>
+            <CounterpartyElemButtonsSC>
+              <ButtonSC
+                variant="contained"
+                type="button"
+                onClick={() => elem.id && onChangeFormCounterparty(elem.id)}>
+                Изменить
+              </ButtonSC>
+              <ButtonSC
+                onClick={() => elem.id && onDeleteCounterparty(elem.id)}>
+                Удалить
+              </ButtonSC>
+            </CounterpartyElemButtonsSC>
+          </ElemSC>
         ))}
-      </CounterpartyListSC>
+      </ListSC>
     </>
   );
 };
 
-const CounterpartyListSC = styled("ul")``;
+const {
+  CounterpartyElemInfoSC,
+  CounterpartyElemAddressSC,
+  CounterpartyElemBankSC,
+  CounterpartyElemButtonsSC,
+} = useCounterpartylistStyles();
 
 export default React.memo(CounterpartyList);
