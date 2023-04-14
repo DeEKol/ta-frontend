@@ -8,6 +8,7 @@ import { DELETE_DRIVER } from "@/graphql/mutations/driver";
 import { GET_ALL_DRIVERS } from "@/graphql/query/driver";
 import type { Driver } from "@/types/models";
 import PageContainerSC from "@/UI/SC/PageContainerSC";
+import TitleSC from "@/UI/SC/TitleSC";
 
 const DriverPage = () => {
   const [form, setForm] = useState<Driver>({
@@ -31,6 +32,7 @@ const DriverPage = () => {
 
   return !loading ? (
     <PageContainerSC>
+      <TitleSC>Водители</TitleSC>
       <DriverForm
         form={form}
         setForm={setForm}

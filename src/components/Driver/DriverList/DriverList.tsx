@@ -1,11 +1,14 @@
 import type { Dispatch } from "react";
 import React from "react";
-import { Button, styled } from "@mui/material";
 
 import type { ApolloQueryResult, OperationVariables } from "@apollo/client";
 
 import { useDriverList } from "@/components/Driver/DriverList/useDriverList";
 import type { Driver } from "@/types/models";
+import ButtonSC from "@/UI/SC/ButtonSC";
+import ElemSC from "@/UI/SC/ElemSC";
+import ListSC from "@/UI/SC/ListSC";
+import SubTitleSC from "@/UI/SC/SubTitleSC";
 
 export interface IDriverListProps {
   deleteDriver: any;
@@ -31,27 +34,25 @@ const DriverList = ({
 
   return (
     <>
-      <h2>Список водителей</h2>
-      <DriverListSC>
+      <SubTitleSC>Список водителей</SubTitleSC>
+      <ListSC>
         {drivers.map((elem) => (
-          <li key={elem.id}>
+          <ElemSC key={elem.id}>
             {elem.id}, {elem.firstname}, {elem.lastname}, {elem.surname}
-            <Button
+            <ButtonSC
               variant="contained"
               type="button"
               onClick={() => elem.id && onChangeFormDriver(elem.id)}>
               Изменить
-            </Button>
-            <Button onClick={() => elem.id && onDeleteDriver(elem.id)}>
+            </ButtonSC>
+            <ButtonSC onClick={() => elem.id && onDeleteDriver(elem.id)}>
               Удалить
-            </Button>
-          </li>
+            </ButtonSC>
+          </ElemSC>
         ))}
-      </DriverListSC>
+      </ListSC>
     </>
   );
 };
-
-const DriverListSC = styled("ul")``;
 
 export default React.memo(DriverList);
