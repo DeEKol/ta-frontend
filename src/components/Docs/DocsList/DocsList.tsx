@@ -1,11 +1,14 @@
 import type { Dispatch } from "react";
 import React from "react";
-import { Button, styled } from "@mui/material";
 
 import type { ApolloQueryResult, OperationVariables } from "@apollo/client";
 
 import { useDocsList } from "@/components/Docs/DocsList/useDocsList";
 import type { Docs } from "@/types/models";
+import ButtonSC from "@/UI/SC/ButtonSC";
+import ElemSC from "@/UI/SC/ElemSC";
+import ListSC from "@/UI/SC/ListSC";
+import SubTitleSC from "@/UI/SC/SubTitleSC";
 
 export interface IDocsListProps {
   deleteDocs: any;
@@ -26,29 +29,27 @@ const DocsList = ({ deleteDocs, docs, setForm, refetch }: IDocsListProps) => {
 
   return (
     <>
-      <h2>Список документов</h2>
-      <CounterpartyListSC>
+      <SubTitleSC>Список документов</SubTitleSC>
+      <ListSC>
         {docs.map((elem) => (
-          <li key={elem.id}>
+          <ElemSC key={elem.id}>
             {elem.id}, {new Date(Number(elem.date)).toLocaleDateString()},{" "}
             {elem.post ? "true" : "false"}, {elem.pay ? "true" : "false"},{" "}
             {elem.contractorId}, {elem.consumerId}
-            <Button
+            <ButtonSC
               variant="contained"
               type="button"
               onClick={() => elem.id && onChangeFormDocs(elem.id)}>
               Изменить
-            </Button>
-            <Button onClick={() => elem.id && onDeleteDocs(elem.id)}>
+            </ButtonSC>
+            <ButtonSC onClick={() => elem.id && onDeleteDocs(elem.id)}>
               Удалить
-            </Button>
-          </li>
+            </ButtonSC>
+          </ElemSC>
         ))}
-      </CounterpartyListSC>
+      </ListSC>
     </>
   );
 };
-
-const CounterpartyListSC = styled("ul")``;
 
 export default React.memo(DocsList);
