@@ -3,33 +3,51 @@ import React from "react";
 import {
   Box,
   Checkbox,
+  FormControl,
   FormControlLabel,
   FormGroup,
+  InputLabel,
+  MenuItem,
+  Select,
   TextField,
 } from "@mui/material";
 
 import type { ApolloQueryResult, OperationVariables } from "@apollo/client";
 
 import { useDocsForm } from "@/components/Docs/DocsForm/useDocsForm";
-import type { Docs } from "@/types/models";
+import type { Counterparty, Docs } from "@/types/models";
 import ButtonSC from "@/UI/SC/ButtonSC";
 import FormSC from "@/UI/SC/FormSC";
 import SubTitleSC from "@/UI/SC/SubTitleSC";
 
 export interface IDocsFormProps {
   form: Docs;
+  contractors: Counterparty[];
+  consumers: Counterparty[];
   setForm: Dispatch<React.SetStateAction<Docs>>;
   refetch: (
     variables?: Partial<OperationVariables> | undefined,
   ) => Promise<ApolloQueryResult<Docs>>;
 }
 
-const DocsForm = ({ form, setForm, refetch }: IDocsFormProps) => {
+const DocsForm = ({
+  form,
+  contractors,
+  consumers,
+  setForm,
+  refetch,
+}: IDocsFormProps) => {
   const { onFormReset, onSubmitCreateDocs, onSubmitUpdateDocs } = useDocsForm({
     form,
+    contractors,
+    consumers,
     setForm,
     refetch,
   });
+
+  // const contractors = consumerInCounterparty(counterparties, "Исполнитель");
+  //
+  // const consumers = consumerInCounterparty(counterparties, "Заказчик");
 
   return (
     <>
@@ -88,31 +106,56 @@ const DocsForm = ({ form, setForm, refetch }: IDocsFormProps) => {
               label="Оплачено"
             />
           </FormGroup>
-          <TextField
+          <FormControl
             required
-            type="number"
-            value={form.contractorId}
-            label="Исполнитель"
-            onChange={(event) =>
-              setForm((prevState) => {
-                return {
-                  ...prevState,
-                  contractorId: Number(event.target.value),
-                };
-              })
-            }
-          />
-          <TextField
+            sx={{ minWidth: 120 }}>
+            <InputLabel id="contractor-label">Исполнитель</InputLabel>
+            <Select
+              labelId="contractor-label"
+              id="contractor"
+              value={form.contractorId}
+              onChange={(event) =>
+                setForm((prevState) => {
+                  return {
+                    ...prevState,
+                    contractorId: Number(event.target.value),
+                  };
+                })
+              }>
+              {contractors.map((elem) => (
+                <MenuItem
+                  key={elem.id}
+                  value={elem.id}>
+                  {elem.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl
             required
-            type="number"
-            value={form.consumerId}
-            label="Заказчик"
-            onChange={(event) =>
-              setForm((prevState) => {
-                return { ...prevState, consumerId: Number(event.target.value) };
-              })
-            }
-          />
+            sx={{ minWidth: 120 }}>
+            <InputLabel id="consumer-label">Заказчик</InputLabel>
+            <Select
+              labelId="consumer-label"
+              id="consumer"
+              value={form.consumerId}
+              onChange={(event) =>
+                setForm((prevState) => {
+                  return {
+                    ...prevState,
+                    consumerId: Number(event.target.value),
+                  };
+                })
+              }>
+              {consumers.map((elem) => (
+                <MenuItem
+                  key={elem.id}
+                  value={elem.id}>
+                  {elem.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </Box>
         <ButtonSC
           variant="contained"
