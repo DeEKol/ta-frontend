@@ -8,6 +8,7 @@ import { DELETE_DOCS } from "@/graphql/mutations/docs";
 import { GET_ALL_DOCS } from "@/graphql/query/docs";
 import type { Docs } from "@/types/models";
 import PageContainerSC from "@/UI/SC/PageContainerSC";
+import TitleSC from "@/UI/SC/TitleSC";
 
 const DocsPage = () => {
   const [form, setForm] = useState<Docs>({
@@ -33,6 +34,7 @@ const DocsPage = () => {
 
   return !loading ? (
     <PageContainerSC>
+      <TitleSC>Документы</TitleSC>
       <DocsForm
         form={form}
         setForm={setForm}
