@@ -1,11 +1,14 @@
 import type { Dispatch } from "react";
 import React from "react";
-import { Button, styled } from "@mui/material";
 
 import type { ApolloQueryResult, OperationVariables } from "@apollo/client";
 
 import { useTripList } from "@/components/Trip/TripList/useTripList";
 import type { Trip } from "@/types/models";
+import ButtonSC from "@/UI/SC/ButtonSC";
+import ElemSC from "@/UI/SC/ElemSC";
+import ListSC from "@/UI/SC/ListSC";
+import SubTitleSC from "@/UI/SC/SubTitleSC";
 
 export interface ITripListProps {
   deleteTrip: any;
@@ -26,32 +29,30 @@ const TripList = ({ deleteTrip, trips, setForm, refetch }: ITripListProps) => {
 
   return (
     <>
-      <h2>Список авто</h2>
-      <TripListSC>
+      <SubTitleSC>Список авто</SubTitleSC>
+      <ListSC>
         {trips.map((elem) => (
-          <li key={elem.id}>
+          <ElemSC key={elem.id}>
             {elem.id}, {elem.itinerary},{" "}
             {new Date(Number(elem.dateFor)).toLocaleDateString()} -{" "}
             {new Date(Number(elem.dateTo)).toLocaleDateString()},{" "}
             {elem.quantity}, {elem.quantityUnit}, {elem.price},{" "}
             {elem.contractorId}, {elem.consumerId}, {elem.docsId},{" "}
             {elem.driverId}, {elem.carId},{" "}
-            <Button
+            <ButtonSC
               variant="contained"
               type="button"
               onClick={() => elem.id && onChangeFormTrip(elem.id)}>
               Изменить
-            </Button>
-            <Button onClick={() => elem.id && onDeleteTrip(elem.id)}>
+            </ButtonSC>
+            <ButtonSC onClick={() => elem.id && onDeleteTrip(elem.id)}>
               Удалить
-            </Button>
-          </li>
+            </ButtonSC>
+          </ElemSC>
         ))}
-      </TripListSC>
+      </ListSC>
     </>
   );
 };
-
-const TripListSC = styled("ul")``;
 
 export default React.memo(TripList);

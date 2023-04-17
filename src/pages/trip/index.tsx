@@ -8,6 +8,7 @@ import { DELETE_TRIP } from "@/graphql/mutations/trip";
 import { GET_ALL_TRIP } from "@/graphql/query/trip";
 import type { Trip } from "@/types/models";
 import PageContainerSC from "@/UI/SC/PageContainerSC";
+import TitleSC from "@/UI/SC/TitleSC";
 
 const TripPage = () => {
   const [form, setForm] = useState<Trip>({
@@ -39,6 +40,7 @@ const TripPage = () => {
 
   return !loading ? (
     <PageContainerSC>
+      <TitleSC>Поездки</TitleSC>
       <TripForm
         form={form}
         setForm={setForm}
