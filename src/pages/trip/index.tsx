@@ -127,6 +127,10 @@ const TripPage = () => {
       <TripList
         deleteTrip={deleteTrip}
         trips={trips}
+        contractors={contractors}
+        consumers={consumers}
+        drivers={drivers}
+        cars={cars}
         setForm={setForm}
         refetch={refetch}
       />
