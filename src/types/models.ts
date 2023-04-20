@@ -56,9 +56,9 @@ export type Trip = {
   quantity: number;
   quantityUnit: string;
   price: number;
-  contractorId: number;
-  consumerId: number;
-  docsId: number;
+  contractorId: number | undefined;
+  consumerId: number | undefined;
+  docsId: number | undefined;
   driverId: number;
   carId: number;
 };

@@ -8,3 +8,8 @@ export enum PagesNamespace {
   DRIVER = "/driver",
   CAR = "/car",
 }
+
+export enum EQuantityUnit {
+  PIECES = "шт",
+  HOURS = "ч",
+}
