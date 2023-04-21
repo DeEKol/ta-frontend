@@ -4,7 +4,8 @@ import React from "react";
 import type { ApolloQueryResult, OperationVariables } from "@apollo/client";
 
 import { useDocsList } from "@/components/Docs/DocsList/useDocsList";
-import type { Docs } from "@/types/models";
+import { findElemForId } from "@/lib/services/services";
+import type { Counterparty, Docs } from "@/types/models";
 import ButtonSC from "@/UI/SC/ButtonSC";
 import ElemSC from "@/UI/SC/ElemSC";
 import ListSC from "@/UI/SC/ListSC";
@@ -13,16 +14,27 @@ import SubTitleSC from "@/UI/SC/SubTitleSC";
 export interface IDocsListProps {
   deleteDocs: any;
   docs: Docs[];
+  contractors: Counterparty[];
+  consumers: Counterparty[];
   setForm: Dispatch<React.SetStateAction<Docs>>;
   refetch: (
     variables?: Partial<OperationVariables> | undefined,
   ) => Promise<ApolloQueryResult<Docs>>;
 }
 
-const DocsList = ({ deleteDocs, docs, setForm, refetch }: IDocsListProps) => {
+const DocsList = ({
+  deleteDocs,
+  docs,
+  contractors,
+  consumers,
+  setForm,
+  refetch,
+}: IDocsListProps) => {
   const { onChangeFormDocs, onDeleteDocs } = useDocsList({
     deleteDocs,
     docs,
+    contractors,
+    consumers,
     setForm,
     refetch,
   });
@@ -33,9 +45,14 @@ const DocsList = ({ deleteDocs, docs, setForm, refetch }: IDocsListProps) => {
       <ListSC>
         {docs.map((elem) => (
           <ElemSC key={elem.id}>
-            {elem.id}, {new Date(Number(elem.date)).toLocaleDateString()},{" "}
-            {elem.post ? "true" : "false"}, {elem.pay ? "true" : "false"},{" "}
-            {elem.contractorId}, {elem.consumerId}
+            id: {elem.id} <br /> Заказчик:{" "}
+            {findElemForId<Counterparty>(contractors, elem.contractorId)?.name},{" "}
+            Исполнитель:{" "}
+            {findElemForId<Counterparty>(consumers, elem.consumerId)?.name}{" "}
+            <br />
+            {new Date(Number(elem.date)).toLocaleDateString()}, Отправлено:{" "}
+            {elem.post ? "true" : "false"}, Оплачено:{" "}
+            {elem.pay ? "true" : "false"},{" "}
             <ButtonSC
               variant="contained"
               type="button"
