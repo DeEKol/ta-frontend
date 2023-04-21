@@ -4,6 +4,7 @@ import React from "react";
 import type { ApolloQueryResult, OperationVariables } from "@apollo/client";
 
 import { useTripList } from "@/components/Trip/TripList/useTripList";
+import { findElemForId } from "@/lib/services/services";
 import type { Car, Counterparty, Driver, Trip } from "@/types/models";
 import ButtonSC from "@/UI/SC/ButtonSC";
 import ElemSC from "@/UI/SC/ElemSC";
@@ -44,15 +45,6 @@ const TripList = ({
     refetch,
   });
 
-  type FindArrElemType = Counterparty | Driver | Car;
-
-  const findElemId = <T extends FindArrElemType>(
-    arr: T[],
-    id: number | undefined,
-  ): T | undefined => {
-    return arr.find((elem: T) => elem.id === id);
-  };
-
   return (
     <>
       <SubTitleSC>Список авто</SubTitleSC>
@@ -61,16 +53,17 @@ const TripList = ({
           <ElemSC key={elem.id}>
             id: {elem.id}, № док-ов: {elem.docsId} <br />
             Заказчик:{" "}
-            {findElemId<Counterparty>(contractors, elem.contractorId)?.name},
+            {findElemForId<Counterparty>(contractors, elem.contractorId)?.name},
             Исполнитель:{" "}
-            {findElemId<Counterparty>(consumers, elem.consumerId)?.name},<br />
+            {findElemForId<Counterparty>(consumers, elem.consumerId)?.name},
+            <br />
             Маршрут: {elem.itinerary},{" "}
             {new Date(Number(elem.dateFor)).toLocaleDateString()} -{" "}
             {new Date(Number(elem.dateTo)).toLocaleDateString()}, Кол-во:{" "}
             {elem.quantity} {elem.quantityUnit}, {elem.price}р., <br />
-            Водитель: {findElemId<Driver>(drivers, elem.driverId)?.lastname},
-            Авто: {findElemId<Car>(cars, elem.carId)?.name}{" "}
-            {findElemId<Car>(cars, elem.carId)?.numberState},{" "}
+            Водитель: {findElemForId<Driver>(drivers, elem.driverId)?.lastname},
+            Авто: {findElemForId<Car>(cars, elem.carId)?.name}{" "}
+            {findElemForId<Car>(cars, elem.carId)?.numberState},{" "}
             <ButtonSC
               variant="contained"
               type="button"

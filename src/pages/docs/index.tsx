@@ -84,6 +84,8 @@ const DocsPage = () => {
       <DocsList
         deleteDocs={deleteDocs}
         docs={docs}
+        contractors={contractors}
+        consumers={consumers}
         setForm={setForm}
         refetch={refetch}
       />
